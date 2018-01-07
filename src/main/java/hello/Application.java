@@ -1,5 +1,8 @@
 package hello;
 
+import java.util.List;
+
+import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -43,6 +46,13 @@ public class Application {
 			log.info("Customer found with findByLastName('Bauer'):");
 			log.info("--------------------------------------------");
 			repository.findByLastName("Bauer").forEach(bauer -> log.info(bauer.toString()));
+			log.info("");
+
+			// fetch customers by criteria
+			log.info("Customer found with findByCriteria():");
+			log.info("-------------------------------------");
+			List<Customer> customers = repository.findByCriteria(Restrictions.eq("firstName", "David"), Restrictions.eq("lastName", "Palmer"));
+			customers.forEach(c -> log.info(c.toString()));
 			log.info("");
 		};
 	}
