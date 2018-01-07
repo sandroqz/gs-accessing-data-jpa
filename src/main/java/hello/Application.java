@@ -29,9 +29,7 @@ public class Application {
 			// fetch all customers
 			log.info("Customers found with findAll():");
 			log.info("-------------------------------");
-			for (Customer customer : repository.findAll()) {
-				log.info(customer.toString());
-			}
+			repository.findAll().forEach(customer -> log.info(customer.toString()));
 			log.info("");
 
 			// fetch an individual customer by ID
@@ -44,9 +42,7 @@ public class Application {
 			// fetch customers by last name
 			log.info("Customer found with findByLastName('Bauer'):");
 			log.info("--------------------------------------------");
-			for (Customer bauer : repository.findByLastName("Bauer")) {
-				log.info(bauer.toString());
-			}
+			repository.findByLastName("Bauer").forEach(bauer -> log.info(bauer.toString()));
 			log.info("");
 		};
 	}
